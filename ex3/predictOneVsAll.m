@@ -30,11 +30,9 @@ X = [ones(m, 1) X];
 %       for each row.
 %       
 
-
-
-
-
-
+ps = sigmoid(X*all_theta');
+[p_max, i_max] = max(ps, [], 2);    % max(ps,[],2) returns a column vector containing the largest elements of each row of ps.
+p = i_max;
 
 % =========================================================================
 
