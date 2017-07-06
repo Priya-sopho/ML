@@ -19,10 +19,11 @@ for iter = 1:num_iters
     %
 
     H = X * theta;
-	T = zeros(n , 1);
-	for i = 1 : m,
-		T = T + (H(i) - y(i)) * X(i,:)' ;	
-	end
+	%T = zeros(n , 1);
+	%for i = 1 : m,
+	%	T = T + (H(i) - y(i)) * X(i,:)' ;	
+    %end
+    T = X' * (H - y);
 	
 	theta = theta - (alpha * T) / m;
 

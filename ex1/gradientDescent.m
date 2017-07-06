@@ -18,16 +18,13 @@ for iter = 1:num_iters
     %
 
     H = X * theta;    % Hypothesis vector
-    T = [0 ; 0];       % will contain new theta vector
+    %T = [0 ; 0];       % will contain new theta vector
     
-    for i = 1 : m,
-		T = T + (H(i) - y(i)) * X(i,:)';	
-	end
-	
+   % for i = 1 : m,
+	%	T = T + (H(i) - y(i)) * X(i,:)';	
+	%end
+    T = X' * (H - y);	
 	theta = theta - (alpha * T) / m;     
-
-
-
 
 
     % ============================================================

@@ -7,7 +7,7 @@ function [X_norm, mu, sigma] = featureNormalize(X)
 
 % You need to set these values correctly
 X_norm = X;
-mu = zeros(1, size(X, 2));
+mu = zeros(1, size(X, 2));   %size(X,2) gives # of column or feature
 sigma = zeros(1, size(X, 2));
 
 % ====================== YOUR CODE HERE ======================
@@ -35,7 +35,7 @@ sigma = std(X);
 for i = 1 : m,
 	X_norm(i, :) = X_norm(i, :) ./ sigma;
 end
-
+%X_norm = (X_norm - mu) ./ sigma;
 
 
 

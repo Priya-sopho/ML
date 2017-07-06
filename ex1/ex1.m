@@ -24,6 +24,8 @@
 %
 
 %% Initialization
+% clear cleans the workspace, close close figures and clc clears the
+% command window
 clear ; close all; clc
 
 %% ==================== Part 1: Basic Function ====================
