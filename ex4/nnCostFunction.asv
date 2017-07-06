@@ -64,7 +64,7 @@ Theta2_grad = zeros(size(Theta2));
 
 %recode y to Y
 I = eye(num_labels);
-Y = zeroes(m,num_labels);
+Y = zeros(m,num_labels);
 for i=1:m
    Y(i,:) = I(y(i),:);
 end
@@ -73,9 +73,30 @@ end
 a1 = [ones(m,1) X];
 z2 = a1*Theta1';
 a2 = [ones(size(z2,1),1) sigmoid(z2)];
-z3 = Thet;
+z3 = a2*Theta2';
 a3 = sigmoid(z3);
+h = a3;
 
+%Calculate J without regularization
+J = sum(sum((-Y).*log(h) - (1-Y).*log(1-h), 2))/m;
+
+%Caculate penalty
+p = sum(sum(Theta1(:, 2:end).^2, 2))+sum(sum(Theta2(:, 2:end).^2, 2));
+
+%Value of J with regularization
+J = J + lambda*p/(2*m);
+
+
+%Calculate del 
+del_3 = h - Y;
+del_2 = (del_3*Theta2).* sigmoidGradient([ones(size(z2,1),1) z2]);
+del_2 = del_2(:,2:end);
+
+%Calculate gradient
+Theta1_grad = (del_2'*a1)./m;
+Theta2_grad = (del_3'*a2)./m;
+
+%Calculating gradient with regulariz
 
 
 

@@ -87,6 +87,21 @@ p = sum(sum(Theta1(:, 2:end).^2, 2))+sum(sum(Theta2(:, 2:end).^2, 2));
 J = J + lambda*p/(2*m);
 
 
+%Calculate del 
+del_3 = h - Y;
+del_2 = (del_3*Theta2).* sigmoidGradient([ones(size(z2,1),1) z2]);
+del_2 = del_2(:,2:end);
+
+%Calculate gradient
+Theta1_grad = (del_2'*a1)./m;
+Theta2_grad = (del_3'*a2)./m;
+
+%Calculating gradient with regularization
+p1 = (lambda/m)*[zeros(size(Theta1,1),1) Theta1(:,2:end)];
+p2 = (lambda/m)*[zeros(size(Theta2,1),1) Theta2(:,2:end)];
+Theta1_grad = Theta1_grad + p1;
+Theta2_grad = Theta2_grad + p2;
+
 
 
 
