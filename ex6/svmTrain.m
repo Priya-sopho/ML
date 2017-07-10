@@ -29,8 +29,8 @@ if ~exist('max_passes', 'var') || isempty(max_passes)
 end
 
 % Data parameters
-m = size(X, 1);
-n = size(X, 2);
+m = size(X, 1);    %# of training example
+n = size(X, 2);    %# of features
 
 % Map 0 to -1
 Y(Y==0) = -1;
@@ -54,7 +54,7 @@ if strcmp(func2str(kernelFunction), 'linearKernel')
     % Vectorized computation for the Linear Kernel
     % This is equivalent to computing the kernel on every pair of examples
     K = X*X';
-elseif strfind(func2str(kernelFunction), 'gaussianKernel')
+elseif contains(func2str(kernelFunction), 'gaussianKernel')
     % Vectorized RBF Kernel
     % This is equivalent to computing the kernel on every pair of examples
     X2 = sum(X.^2, 2);

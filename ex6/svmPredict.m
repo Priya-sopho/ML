@@ -23,7 +23,7 @@ if strcmp(func2str(model.kernelFunction), 'linearKernel')
     % We can use the weights and bias directly if working with the 
     % linear kernel
     p = X * model.w + model.b;
-elseif strfind(func2str(model.kernelFunction), 'gaussianKernel')
+elseif contains(func2str(model.kernelFunction), 'gaussianKernel')
     % Vectorized RBF Kernel
     % This is equivalent to computing the kernel on every pair of examples
     X1 = sum(X.^2, 2);
